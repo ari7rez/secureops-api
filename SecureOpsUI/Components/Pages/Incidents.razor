@@ -1,0 +1,48 @@
+@page "/incidents"
+@using SecureOpsUI.Models
+@using SecureOpsUI.Services
+@inject IncidentService IncidentService
+
+<h3>Incidents</h3>
+
+@if (incidents == null)
+{
+    <p>Loading...</p>
+}
+else if (!incidents.Any())
+{
+    <p>No incidents found.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Severity</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var incident in incidents)
+            {
+                <tr>
+                    <td>@incident.Id</td>
+                    <td>@incident.Title</td>
+                    <td>@incident.Severity</td>
+                    <td>@incident.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Incident>? incidents;
+
+    protected override async Task OnInitializedAsync()
+    {
+        incidents = await IncidentService.GetIncidentsAsync();
+    }
+}
