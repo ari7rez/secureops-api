@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SecureOpsAPI.Data;
 using SecureOpsAPI.Models;
 
 namespace SecureOpsAPI.Controllers;
@@ -7,19 +9,25 @@ namespace SecureOpsAPI.Controllers;
 [Route("api/[controller]")]
 public class IncidentsController : ControllerBase
 {
-    private static readonly List<Incident> incidents = new();
+    private readonly AppDbContext _context;
+
+    public IncidentsController(AppDbContext context)
+    {
+        _context = context;
+    }
 
     [HttpGet]
-    public IActionResult GetAll()
+    public async Task<IActionResult> GetAll()
     {
+        var incidents = await _context.Incidents.ToListAsync();
         return Ok(incidents);
     }
 
     [HttpPost]
-    public IActionResult Create(Incident incident)
+    public async Task<IActionResult> Create(Incident incident)
     {
-        incident.Id = incidents.Count + 1;
-        incidents.Add(incident);
+        _context.Incidents.Add(incident);
+        await _context.SaveChangesAsync();
         return Ok(incident);
     }
 }
