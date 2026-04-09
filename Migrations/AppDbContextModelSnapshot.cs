@@ -22,6 +22,9 @@ namespace secureopsapi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("RiskId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("Severity")
                         .HasColumnType("INTEGER");
 
@@ -30,9 +33,12 @@ namespace secureopsapi.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("RiskId");
 
                     b.ToTable("Incidents");
                 });
@@ -45,6 +51,7 @@ namespace secureopsapi.Migrations
 
                     b.Property<string>("Owner")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Severity")
@@ -55,11 +62,27 @@ namespace secureopsapi.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.ToTable("Risks");
+                });
+
+            modelBuilder.Entity("SecureOpsAPI.Models.Incident", b =>
+                {
+                    b.HasOne("SecureOpsAPI.Models.Risk", "Risk")
+                        .WithMany("Incidents")
+                        .HasForeignKey("RiskId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Risk");
+                });
+
+            modelBuilder.Entity("SecureOpsAPI.Models.Risk", b =>
+                {
+                    b.Navigation("Incidents");
                 });
 #pragma warning restore 612, 618
         }

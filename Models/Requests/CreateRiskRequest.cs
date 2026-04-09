@@ -1,12 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using SecureOpsAPI.Enums;
 
-namespace SecureOpsAPI.Models;
+namespace SecureOpsAPI.Models.Requests;
 
-public class Incident
+public class CreateRiskRequest
 {
-    public int Id { get; set; }
-
     [Required]
     [StringLength(100)]
     public string Title { get; set; } = string.Empty;
@@ -15,8 +13,9 @@ public class Incident
     public Severity Severity { get; set; }
 
     [Required]
-    public RecordStatus Status { get; set; }
+    [StringLength(50)]
+    public string Owner { get; set; } = string.Empty;
 
-    public int? RiskId { get; set; }
-    public Risk? Risk { get; set; }
+    [Required]
+    public RecordStatus Status { get; set; }
 }
