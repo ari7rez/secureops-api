@@ -1,78 +1,81 @@
-📌 SecureOps Platform
+# 📌 SecureOps Platform
 
 A full-stack cyber security operations platform for managing incidents and risks, built using ASP.NET Core and Blazor.
 
-⸻
+---
 
-🚀 Overview
+## 🚀 Overview
 
 SecureOps is a lightweight security management system designed to simulate real-world cyber security workflows. It allows users to:
-	•	Track security incidents
-	•	Manage organisational risks
-	•	Monitor key metrics through a dashboard
-	•	Create and update records via a web interface
+
+- Track security incidents  
+- Manage organisational risks  
+- Monitor key metrics through a dashboard  
+- Create and update records via a web interface  
 
 This project demonstrates full-stack development skills with a focus on clean architecture and practical system design.
 
-⸻
+---
 
-🏗️ Architecture
+## 🏗️ Architecture
 
 project/
 ├── api/   → ASP.NET Core Web API (backend)
 ├── ui/    → Blazor Server (frontend)
 
-Backend (API)
-	•	ASP.NET Core Web API
-	•	Entity Framework Core
-	•	SQLite database
-	•	RESTful endpoints
+### Backend (API)
+- ASP.NET Core Web API  
+- Entity Framework Core  
+- SQLite database  
+- RESTful endpoints  
 
-Frontend (UI)
-	•	Blazor Server
-	•	Razor Components
-	•	HTTPClient integration with API
+### Frontend (UI)
+- Blazor Server  
+- Razor Components  
+- HTTPClient integration with API  
 
-⸻
+---
 
-⚙️ Features
+## ⚙️ Features
 
-🔐 Incident Management
-	•	Create, view and track incidents
-	•	Severity and status tracking
-	•	Linked to risks
+### 🔐 Incident Management
+- Create, view and track incidents  
+- Severity and status tracking  
+- Linked to risks  
 
-⚠️ Risk Register
-	•	Create and manage risks
-	•	Assign ownership
-	•	Track mitigation status
+### ⚠️ Risk Register
+- Create and manage risks  
+- Assign ownership  
+- Track mitigation status  
 
-📊 Dashboard
-	•	Total incidents
-	•	Open incidents
-	•	Total risks
-	•	High/Critical risks
+### 📊 Dashboard
+- Total incidents  
+- Open incidents  
+- Total risks  
+- High/Critical risks  
 
-🧩 Full Integration
-	•	Frontend communicates with backend via REST API
-	•	Real-time UI updates using Blazor
+### 🧩 Full Integration
+- Frontend communicates with backend via REST API  
+- Real-time UI updates using Blazor  
 
-⸻
+---
 
-🛠️ Tech Stack
-	•	C# (.NET 10)
-	•	ASP.NET Core Web API
-	•	Blazor Server
-	•	Entity Framework Core
-	•	SQLite
-	•	Git & GitHub
+## 🛠️ Tech Stack
 
-⸻
+- C# (.NET 10)  
+- ASP.NET Core Web API  
+- Blazor Server  
+- Entity Framework Core  
+- SQLite  
+- Git & GitHub  
 
-▶️ How to Run
+---
 
-1. Run API
+## ▶️ How to Run
 
+### 1. Run API
+
+```bash
 cd project
 dotnet run
 
@@ -140,5 +143,6 @@ http://localhost:5258/swagger
 👨‍💻 Author
 
 Mohammad Ali Rezaei
-Cyber Security Student | University of Adelaide
+Cyber Security Graduate | University of Adelaide
+
 
