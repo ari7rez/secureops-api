@@ -145,4 +145,18 @@ http://localhost:5258/swagger
 Mohammad Ali Rezaei
 Cyber Security Graduate | University of Adelaide
 
+⸻
 
+
+flowchart LR
+    U[User] --> UI[Blazor UI]
+    UI -->|HTTPClient / REST API| API[ASP.NET Core Web API]
+    API --> C[Controllers]
+    C --> S[Application Logic]
+    S --> EF[Entity Framework Core]
+    EF --> DB[(SQLite Database)]
+
+    API --> SW[Swagger / OpenAPI]
+
+    DB --> I[(Incidents Table)]
+    DB --> R[(Risks Table)]
