@@ -147,7 +147,6 @@ Cyber Security Graduate | University of Adelaide
 
 ⸻
 
-
 flowchart LR
     U[User] --> UI[Blazor UI]
     UI -->|HTTPClient / REST API| API[ASP.NET Core Web API]
