@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using SecureOpsAPI.Enums;
 
 namespace SecureOpsAPI.Models;
 
@@ -7,18 +8,14 @@ public class Risk
     public int Id { get; set; }
 
     [Required]
-    [StringLength(100)]
     public string Title { get; set; } = string.Empty;
 
     [Required]
-    [StringLength(20)]
-    public string Severity { get; set; } = string.Empty;
+    public Severity Severity { get; set; }
 
     [Required]
-    [StringLength(50)]
     public string Owner { get; set; } = string.Empty;
 
     [Required]
-    [StringLength(20)]
-    public string Status { get; set; } = string.Empty;
+    public Status Status { get; set; }
 }
