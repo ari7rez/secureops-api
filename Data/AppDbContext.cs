@@ -10,4 +10,5 @@ public class AppDbContext : DbContext
     }
 
     public DbSet<Incident> Incidents => Set<Incident>();
+    public DbSet<Risk> Risks => Set<Risk>();
 }

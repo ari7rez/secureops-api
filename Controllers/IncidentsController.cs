@@ -37,6 +37,8 @@ public class IncidentsController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create(Incident incident)
     {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
         _context.Incidents.Add(incident);
         await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(GetById), new { id = incident.Id }, incident);
