@@ -16,4 +16,9 @@ public class RiskService
     {
         return await _httpClient.GetFromJsonAsync<List<Risk>>("api/risks") ?? new();
     }
+
+    public async Task CreateRiskAsync(Risk risk)
+    {
+        await _httpClient.PostAsJsonAsync("api/risks", risk);
+    }
 }

@@ -7,31 +7,49 @@
 <h3>Dashboard</h3>
 
 <div class="row g-3">
-    <div class="col-md-6">
-        <div class="card p-3">
-            <h5>Total Incidents</h5>
-            <h2>@incidentCount</h2>
+    <div class="col-md-3">
+        <div class="card p-3 shadow-sm">
+            <h6>Total Incidents</h6>
+            <h2>@totalIncidents</h2>
         </div>
     </div>
 
-    <div class="col-md-6">
-        <div class="card p-3">
-            <h5>Total Risks</h5>
-            <h2>@riskCount</h2>
+    <div class="col-md-3">
+        <div class="card p-3 shadow-sm">
+            <h6>Open Incidents</h6>
+            <h2>@openIncidents</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card p-3 shadow-sm">
+            <h6>Total Risks</h6>
+            <h2>@totalRisks</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card p-3 shadow-sm">
+            <h6>High / Critical Risks</h6>
+            <h2>@highRisks</h2>
         </div>
     </div>
 </div>
 
 @code {
-    private int incidentCount;
-    private int riskCount;
+    private int totalIncidents;
+    private int openIncidents;
+    private int totalRisks;
+    private int highRisks;
 
     protected override async Task OnInitializedAsync()
     {
         var incidents = await IncidentService.GetIncidentsAsync();
         var risks = await RiskService.GetRisksAsync();
 
-        incidentCount = incidents.Count;
-        riskCount = risks.Count;
+        totalIncidents = incidents.Count;
+        openIncidents = incidents.Count(i => i.Status == "Open");
+        totalRisks = risks.Count;
+        highRisks = risks.Count(r => r.Severity == "High" || r.Severity == "Critical");
     }
 }

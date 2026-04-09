@@ -1,0 +1,49 @@
+@page "/create-risk"
+@inject RiskService RiskService
+@inject NavigationManager Navigation
+
+<PageTitle>Create Risk</PageTitle>
+
+<h3>Create Risk</h3>
+
+<div class="mb-3">
+    <label class="form-label">Title</label>
+    <input class="form-control" @bind="risk.Title" />
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Severity</label>
+    <select class="form-select" @bind="risk.Severity">
+        <option>Low</option>
+        <option>Medium</option>
+        <option>High</option>
+        <option>Critical</option>
+    </select>
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Owner</label>
+    <input class="form-control" @bind="risk.Owner" />
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Status</label>
+    <select class="form-select" @bind="risk.Status">
+        <option>Open</option>
+        <option>InProgress</option>
+        <option>Closed</option>
+        <option>Mitigated</option>
+    </select>
+</div>
+
+<button class="btn btn-primary" @onclick="SaveRisk">Create Risk</button>
+
+@code {
+    private Risk risk = new();
+
+    private async Task SaveRisk()
+    {
+        await RiskService.CreateRiskAsync(risk);
+        Navigation.NavigateTo("/risks");
+    }
+}

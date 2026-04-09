@@ -1,0 +1,49 @@
+@page "/create-incident"
+@inject IncidentService IncidentService
+@inject NavigationManager Navigation
+
+<PageTitle>Create Incident</PageTitle>
+
+<h3>Create Incident</h3>
+
+<div class="mb-3">
+    <label class="form-label">Title</label>
+    <input class="form-control" @bind="incident.Title" />
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Severity</label>
+    <select class="form-select" @bind="incident.Severity">
+        <option>Low</option>
+        <option>Medium</option>
+        <option>High</option>
+        <option>Critical</option>
+    </select>
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Status</label>
+    <select class="form-select" @bind="incident.Status">
+        <option>Open</option>
+        <option>InProgress</option>
+        <option>Closed</option>
+        <option>Mitigated</option>
+    </select>
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Risk Id (optional)</label>
+    <input type="number" class="form-control" @bind="incident.RiskId" />
+</div>
+
+<button class="btn btn-primary" @onclick="SaveIncident">Create Incident</button>
+
+@code {
+    private Incident incident = new();
+
+    private async Task SaveIncident()
+    {
+        await IncidentService.CreateIncidentAsync(incident);
+        Navigation.NavigateTo("/incidents");
+    }
+}
