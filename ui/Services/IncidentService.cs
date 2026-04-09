@@ -14,7 +14,11 @@ public class IncidentService
 
     public async Task<List<Incident>> GetIncidentsAsync()
     {
-        var incidents = await _httpClient.GetFromJsonAsync<List<Incident>>("api/incidents");
-        return incidents ?? new List<Incident>();
+        return await _httpClient.GetFromJsonAsync<List<Incident>>("api/incidents") ?? new();
+    }
+
+    public async Task CreateIncidentAsync(Incident incident)
+    {
+        await _httpClient.PostAsJsonAsync("api/incidents", incident);
     }
 }

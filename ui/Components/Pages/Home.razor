@@ -1,7 +1,37 @@
-﻿@page "/"
+@page "/"
+@inject IncidentService IncidentService
+@inject RiskService RiskService
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Dashboard</PageTitle>
 
-<h1>Hello, world!</h1>
+<h3>Dashboard</h3>
 
-Welcome to your new app.
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="card p-3">
+            <h5>Total Incidents</h5>
+            <h2>@incidentCount</h2>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card p-3">
+            <h5>Total Risks</h5>
+            <h2>@riskCount</h2>
+        </div>
+    </div>
+</div>
+
+@code {
+    private int incidentCount;
+    private int riskCount;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var incidents = await IncidentService.GetIncidentsAsync();
+        var risks = await RiskService.GetRisksAsync();
+
+        incidentCount = incidents.Count;
+        riskCount = risks.Count;
+    }
+}

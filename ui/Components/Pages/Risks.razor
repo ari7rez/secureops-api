@@ -1,0 +1,51 @@
+@page "/risks"
+@using SecureOpsUI.Models
+@using SecureOpsUI.Services
+@inject RiskService RiskService
+
+<PageTitle>Risks</PageTitle>
+
+<h3>Risks</h3>
+
+@if (risks == null)
+{
+    <p>Loading...</p>
+}
+else if (!risks.Any())
+{
+    <p>No risks found.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Severity</th>
+                <th>Owner</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var risk in risks)
+            {
+                <tr>
+                    <td>@risk.Id</td>
+                    <td>@risk.Title</td>
+                    <td>@risk.Severity</td>
+                    <td>@risk.Owner</td>
+                    <td>@risk.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@code {
+    private List<Risk>? risks;
+
+    protected override async Task OnInitializedAsync()
+    {
+        risks = await RiskService.GetRisksAsync();
+    }
+}
